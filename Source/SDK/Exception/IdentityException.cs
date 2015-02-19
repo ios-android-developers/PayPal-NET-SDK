@@ -25,7 +25,14 @@ namespace PayPal
             {
                 this.Details = JsonFormatter.ConvertFromJson<IdentityError>(this.Response);
 
-                StringBuilder sb = new StringBuilder();
+                // Set base System.Exception information.
+                this.HelpLink = this.Details.error_uri;
+                this.Data["ErrorName"] = this.Details.error;
+                this.Data["ErrorMessage"] = this.Details.error_description;
+                this.Data["HelpLink"] = this.Details.error_uri;
+
+                // Log the error details
+                var sb = new StringBuilder();
                 sb.AppendLine();
                 sb.AppendLine("   Error:   " + this.Details.error);
                 sb.AppendLine("   Message: " + this.Details.error_description);

@@ -18,7 +18,8 @@ namespace PayPal
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         /// <param name="response">The response from server.</param>
-        /// <param name="status">HTTP status code returned from the server.</param>
+        /// <param name="statusCode">HTTP status code returned from the server.</param>
+        /// <param name="webExceptionStatus"><see cref="System.Net.WebExceptionStatus"/> thrown when attempting to make the HTTP request.</param>
         public HttpException(string message, string response, HttpStatusCode statusCode, WebExceptionStatus webExceptionStatus) : base(message, response, webExceptionStatus)
         {
             this.StatusCode = statusCode;
